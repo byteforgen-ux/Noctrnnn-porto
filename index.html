@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#081525">
+<title>nocturn — personal space</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+:root{
+  --bg:#081525; --panel:#0d2035; --panel2:#102740; --ink:#f3f5f8;
+  --muted:#9aaabd; --line:#263b52; --accent:#dce8f5; --red:#d84b55;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif}
+a{color:inherit;text-decoration:none}
+.page{max-width:1120px;margin:auto;padding:26px 6vw 56px}
+.topbar{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:8px 0 17px;font:10px 'DM Mono',monospace;letter-spacing:.16em;text-transform:uppercase}
+.brand{font-weight:500;letter-spacing:.22em}
+.status{display:flex;align-items:center;gap:9px;color:var(--muted)}
+.dot{width:6px;height:6px;background:#b9d3ed;border-radius:50%;display:inline-block;box-shadow:0 0 0 4px #b9d3ed18}
+.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:42px;align-items:end;padding:88px 0 66px}
+.eyebrow,.section-label{font:10px 'DM Mono',monospace;letter-spacing:.17em;text-transform:uppercase;color:var(--muted)}
+.eyebrow:before{content:"";display:inline-block;width:24px;height:1px;background:var(--red);vertical-align:middle;margin-right:10px}
+h1{font-size:clamp(58px,10vw,116px);line-height:.88;letter-spacing:-.085em;margin:22px 0 25px;font-weight:600}
+h1 em{font-family:'Playfair Display',serif;font-weight:600;letter-spacing:-.07em;color:#b9cce0}
+.intro{max-width:490px;font-size:15px;line-height:1.9;color:#b4c1d0}
+.hero-card{background:linear-gradient(145deg,#102943,#0b1a2c);border:1px solid var(--line);padding:23px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.hero-card:after{content:"";position:absolute;width:180px;height:180px;border:1px solid #54708d55;border-radius:50%;right:-65px;top:35px;box-shadow:0 0 0 16px #54708d12,0 0 0 32px #54708d0b}
+.card-top{display:flex;justify-content:space-between;align-items:center;font:9px 'DM Mono',monospace;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+.flag{width:28px;height:18px;background:repeating-linear-gradient(90deg,#e8edf3 0 5px,#13263b 5px 10px);opacity:.8}
+.card-number{font:italic 66px 'Playfair Display',serif;color:#eaf1f8;position:relative;z-index:1}
+.card-bottom{font:10px 'DM Mono',monospace;line-height:1.8;letter-spacing:.08em;color:var(--muted);position:relative;z-index:1}
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:13px 0;overflow:hidden;white-space:nowrap;font:9px 'DM Mono',monospace;letter-spacing:.2em;color:#91a4b9}
+.ticker span{padding:0 24px}.ticker b{color:var(--red);font-weight:500}
+.section{display:grid;grid-template-columns:180px 1fr;gap:34px;padding:64px 0;border-bottom:1px solid var(--line)}
+.section-label{padding-top:8px}
+h2{font-size:clamp(30px,5vw,46px);letter-spacing:-.06em;margin:0 0 22px;font-weight:600}
+.about-copy{max-width:650px;font-size:14px;line-height:1.95;color:#b4c1d0}
+.about-copy strong{color:var(--ink);font-weight:600}
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:27px}
+.mini-card{border:1px solid var(--line);padding:17px;background:var(--panel)}
+.mini-card small{font:9px 'DM Mono',monospace;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+.mini-card p{font-size:12px;line-height:1.7;margin:9px 0 0;color:#d5deea}
+.dni-box{background:var(--panel);border:1px solid var(--line);padding:29px;position:relative;overflow:hidden}
+.dni-box:after{content:"×";position:absolute;right:25px;top:-35px;font:150px 'Playfair Display',serif;color:#ffffff08}
+.dni-box h2{color:#d7e4f1;font:italic 39px 'Playfair Display',serif;margin-bottom:12px}
+.dni-box p{max-width:620px;color:#b4c1d0;font-size:13px;line-height:1.9;margin:0}
+.dni-box .note{display:block;margin-top:20px;font:9px 'DM Mono',monospace;letter-spacing:.14em;color:#8297ad;text-transform:uppercase}
+.social-list{display:grid;grid-template-columns:1fr 1fr;gap:0 30px}
+.social-link{display:flex;justify-content:space-between;align-items:center;padding:19px 0;border-bottom:1px solid var(--line);font-size:14px;transition:padding .2s,color .2s}
+.social-link:hover{padding-left:7px;color:#c8d9eb}
+.social-link span:first-child{color:var(--muted);font:9px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em}
+.social-link b{font-weight:500}
+.arrow{font-size:17px;color:#c5d6e8}
+.footer{display:flex;justify-content:space-between;gap:20px;padding-top:26px;font:9px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#8294a8}
+.backtop{border-bottom:1px solid #8294a8}
+@media(max-width:700px){
+ .page{padding:20px 22px 38px}
+ .hero{grid-template-columns:1fr;gap:25px;padding:64px 0 48px}
+ .hero-card{min-height:175px}
+ .section{grid-template-columns:1fr;gap:17px;padding:47px 0}
+ .social-list,.mini-grid{grid-template-columns:1fr}
+ .footer{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="topbar">
+  <a class="brand" href="#home">N / nocturn</a>
+  <div class="status"><i class="dot"></i> personal space&nbsp; · &nbsp;est. 2026</div>
+</header>
+<main>
+<section class="hero" id="home">
+  <div>
+    <div class="eyebrow">01 — a little introduction</div>
+    <h1>Hola<span style="color:var(--red)">!</span><br><em>I'm nocturn.</em></h1>
+    <p class="intro">Welcome to my little corner of the internet. A space for the things I create, the things I like, and little pieces of who I am.</p>
+  </div>
+  <aside class="hero-card">
+    <div class="card-top"><span>Personal archive / 001</span><i class="flag"></i></div>
+    <div class="card-number">N° 01</div>
+    <div class="card-bottom">CREATIVE MIND<br>ALWAYS IN MOTION.</div>
+  </aside>
+</section>
+<div class="ticker"><span>NOCTURN PERSONAL PAGE</span><b> ✳ </b><span>ART · MUSIC · IDEAS</span><b> ✳ </b><span>KEEP MOVING FORWARD</span><b> ✳ </b><span>NOCTURN PERSONAL PAGE</span></div>
+
+<section class="section" id="about">
+  <div class="section-label">02 — about me</div>
+  <div>
+    <h2>A bit about myself.</h2>
+    <div class="about-copy">
+      <p>Hi, I'm <strong>Nocturn</strong> — you can call me <strong>[your name / nickname]</strong>. I'm someone who enjoys <strong>art, music, learning new things, and exploring creative ideas</strong>.</p>
+      <p>This page is a small introduction to me. I like discovering new perspectives, collecting inspiration, and turning random ideas into something of my own.</p>
+      <p><strong>Currently into:</strong> [write your current interests here].</p>
+    </div>
+    <div class="mini-grid">
+      <div class="mini-card"><small>Usually doing</small><p>Creating, learning, listening to music.</p></div>
+      <div class="mini-card"><small>Personal motto</small><p>Stay curious. Keep moving.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="dni">
+  <div class="section-label">03 — boundaries</div>
+  <div class="dni-box">
+    <h2>DNI / Do Not Interact</h2>
+    <p>Please don't interact if you spread hate, disrespect boundaries, engage in harassment, or make others feel unsafe. Be respectful; that's all I ask.</p>
+    <span class="note">Respect goes both ways · thank you.</span>
+  </div>
+</section>
+
+<section class="section" id="socials">
+  <div class="section-label">04 — find me</div>
+  <div>
+    <h2>Elsewhere online.</h2>
+    <div class="social-list">
+      <a class="social-link" href="https://instagram.com/nocturn" target="_blank" rel="noopener"><span>Instagram</span><b>@nocturn</b><span class="arrow">↗</span></a>
+      <a class="social-link" href="#" onclick="return false"><span>TikTok</span><b>—</b><span class="arrow">↗</span></a>
+      <a class="social-link" href="#" onclick="return false"><span>Twitter / X</span><b>—</b><span class="arrow">↗</span></a>
+      <a class="social-link" href="#" onclick="return false"><span>YouTube</span><b>—</b><span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <span>© 2026 — nocturn</span><span>quiet details, clear identity.</span><a class="backtop" href="#home">back to top ↑</a>
+</footer>
+</div>
+</body>
+</html>
