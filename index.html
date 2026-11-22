@@ -202,6 +202,13 @@ const supabaseClient = window.supabase.createClient(
 
 console.log("NOCTURN connected to Supabase!");
 
+          const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+console.log("NOCTURN connected to Supabase!");
+
             console.error("Supabase error:", error.message);
         } else {
             console.log("Database connected successfully!", data);
