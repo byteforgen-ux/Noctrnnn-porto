@@ -201,12 +201,7 @@ const supabaseClient = window.supabase.createClient(
 );
 
 console.log("NOCTURN connected to Supabase!");
-  supabaseClient
-    .from("ngl_messages")
-    .select("id")
-    .limit(1)
-    .then(({ data, error }) => {
-        if (error) {
+
             console.error("Supabase error:", error.message);
         } else {
             console.log("Database connected successfully!", data);
