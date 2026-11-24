@@ -249,45 +249,42 @@ section.rv.in:before{transform:none}
 </style>
 <script>
 /* ===== BAGIAN INI YANG KAMU EDIT ===== */
-const LAGU=[
+<script>
+const LAGU2=[
  {title:"Salvatore",artist:"Lana Del Rey",link:"https://open.spotify.com/track/21qg0IBZf8R12qHd9A3AA4"},
  {title:"Dozen",artist:"Alison’",link:"https://open.spotify.com/track/7FoVZCTSLY9gQ2vqIURPcg"},
  {title:"Surabaya",artist:"Crayon Case",link:"https://open.spotify.com/track/2g7n0uQwR9vJGRLNTCSNbU"}
 ];
-const RUANG={
+const RUANG2={
  title:"Nocturn",
  about:"The person behind.",
- upcoming:"Hey! This is my little corner of the internet, a space filled with bits and pieces of things I like, do, and experience. From personal creations and projects to music and little moments that become part of everyday life.
+ upcoming:`Hey! This is my little corner of the internet, a space filled with bits and pieces of things I like, do, and experience. From personal creations and projects to music and little moments that become part of everyday life.
 
 I’ve got quite a few interests and there’s still so much I’d like to explore. Looking forward to creating more things, joining interesting activities, picking up new skills, and collecting experiences along the way.
 
 Also, I might be participating in FLS3N sometime soon. Hopefully, things go well! Wish me luck, and stay tuned for more updates.
 
-Just taking it all one step at a time. There’s more to come!."
+Just taking it all one step at a time. There’s more to come!`
 };
-/* ===================================== */
 
 document.documentElement.classList.add("js");
 
-// judul naik dari balik garis
-document.querySelectorAll("main section h2, main .big").forEach(h=>{h.innerHTML='<span class="mk"><span>'+h.innerHTML+'</span></span>'});
+document.querySelectorAll("main section h2, main .big").forEach(h=>{if(!h.querySelector(".mk"))h.innerHTML='<span class="mk"><span>'+h.innerHTML+'</span></span>'});
 
-// jeda bertahap untuk isi tiap section
 document.querySelectorAll("main section.rv").forEach(s=>{
  s.querySelectorAll(".card,p,.tools,canvas#cv").forEach((e,i)=>{e.style.transitionDelay=(.25+Math.min(i,8)*.09)+"s"});
 });
 
-const io3=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io3.unobserve(e.target)}}),{threshold:.08});
-document.querySelectorAll("main .rv").forEach(e=>io3.observe(e));
+const io4=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io4.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll("main .rv").forEach(e=>io4.observe(e));
 
-// lagu (pemutar Spotify, sampul asli ikut tampil)
-function spId(l){const m=(l||"").match(/track\/([A-Za-z0-9]+)/);return m&&m[1]}
-document.getElementById("songs").innerHTML=LAGU.map((s,i)=>{const id=spId(s.link);return `<div class="card"><div class="tag">Song 0${i+1}</div><div style="font-weight:700;font-size:20px">${s.title}</div><div class="cm">${s.artist}</div>${id?`<iframe class="sp" src="https://open.spotify.com/embed/track/${id}?theme=0" allow="encrypted-media" loading="lazy"></iframe>`:`<div class="cm">Link lagu belum diisi</div>`}</div>`}).join("");
+function spId2(l){const m=(l||"").match(/track\/([A-Za-z0-9]+)/);return m&&m[1]}
+document.getElementById("songs").innerHTML=LAGU2.map((s,i)=>{const id=spId2(s.link);return `<div class="card"><div class="tag">Song 0${i+1}</div><div style="font-weight:700;font-size:20px">${s.title}</div><div class="cm">${s.artist}</div>${id?`<iframe class="sp" src="https://open.spotify.com/embed/track/${id}?theme=0" allow="encrypted-media" loading="lazy"></iframe>`:`<div class="cm">Link lagu belum diisi</div>`}</div>`}).join("");
 
-// teks Room
-const rp=document.querySelectorAll("#deep p");
-document.querySelector("#deep h2").textContent=RUANG.title;
-rp[0].textContent=RUANG.about;
-rp[1].textContent=RUANG.upcoming;
+const rp2=document.querySelectorAll("#deep p");
+document.querySelector("#deep h2").textContent=RUANG2.title;
+rp2[0].textContent=RUANG2.about;
+rp2[1].textContent=RUANG2.upcoming;
+rp2[1].style.whiteSpace="pre-line";
 </script>
 </body></html>
