@@ -66,8 +66,7 @@ footer{padding:60px 7vw;border-top:1px solid var(--ln);text-align:center}
  </div>
 </section>
 <div class="mq"><div class="sans">NOCTURN PERSONAL PAGE ✳ ART · MUSIC · IDEAS ✳ KEEP MOVING FORWARD ✳ NOCTURN PERSONAL PAGE ✳ ART · MUSIC · IDEAS ✳ KEEP MOVING FORWARD ✳ NOCTURN PERSONAL PAGE ✳ ART · MUSIC · IDEAS ✳ KEEP MOVING FORWARD ✳ NOCTURN PERSONAL PAGE ✳</div></div>
-<section class="rv"><div class="tag">N° 21</div><div class="big">MIND<br>ALWAYS IN<br>MOTION.</div></section>
-<section class="rv" id="about"><div class="tag">02 — About me</div><h2>About myself.</h2>
+<section class="rv"><div class="tag">N° 21</div><div class="big">MIND<br>ALWAYS IN<br>MOTION.</div></section><section class="rv" id="about"><div class="tag">02 — About me</div><h2>About myself.</h2>
  <p>Hola! I’m Nocturn — you can call me Nocturn. I’m someone who enjoys art, music, learning new things, and exploring creative ideas.</p>
  <p>This page is a small introduction to me. I like turning random ideas into something of my own. Thanks for visiting my page and supporting my work, I hope you enjoy my art.</p>
  <p>Currently into: art, music, random things, and spending time online.</p>
@@ -128,15 +127,14 @@ footer{padding:60px 7vw;border-top:1px solid var(--ln);text-align:center}
 <div id="deep"><button id="back">← Back</button>
  <div style="max-width:900px;margin:40px auto;display:flex;gap:6vw;flex-wrap:wrap;align-items:center">
   <div class="ph" style="cursor:default" id="ph2"><span>N</span></div>
-  <div style="flex:1;min-width:240px"><div class="tag">Room 01</div><h2>Nocturn</h2><p>About me: (isi nanti — karakter, cerita, kesukaan.)</p>
-  <div class="card"><div class="tag">Upcoming</div><p>Joining competitions such as FLS3N. Updates coming soon.</p></div></div>
+  <div style="flex:1;min-width:240px"><div class="tag">Room 01</div><h2>Nocturn</h2><p>About me</p>
+  <div class="card"><div class="tag">Notes</div><p>Notes</p></div></div>
  </div></div>
 
 <div id="owner"><button id="oback">← Back</button><h2>Dashboard</h2>
  <div class="tools"><button data-t="m" class="on">Messages</button><button data-t="a">Artwork / Approval</button><button data-t="c">Comments</button><button data-t="r">Reactions</button></div>
  <div id="ob2"></div></div>
-<div id="toast"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<div id="toast"></div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 function toast(t){const e=$("#toast");e.textContent=t;e.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display="none",2200)}
@@ -163,8 +161,7 @@ $("#un").onclick=()=>{if(hist.length>1){redo.push(hist.pop());load(hist[hist.len
 $("#re").onclick=()=>{if(redo.length){const u=redo.pop();hist.push(u);load(u)}};
 $("#cl").onclick=()=>{blank();hist.push(cv.toDataURL());redo=[]};
 [["bp","p"],["bb","b"],["be","e"]].forEach(([id,t])=>$("#"+id).onclick=()=>{tool=t;["bp","bb","be"].forEach(i=>$("#"+i).classList.toggle("on",i==id))});
-$("#dl").onclick=()=>{const a=document.createElement("a");a.href=cv.toDataURL("image/png");a.download="nocturn-drawing.png";a.click()};
- // ===== SUPABASE =====
+$("#dl").onclick=()=>{const a=document.createElement("a");a.href=cv.toDataURL("image/png");a.download="nocturn-drawing.png";a.click()};// ===== SUPABASE =====
 const SB_URL="https://jsoieksxarhdhkelhbdx.supabase.co",SB_KEY="sb_publishable_qwxaUI6HblqNk4JAdreACw_JArSsXxJ";
 const sb=supabase.createClient(SB_URL,SB_KEY),BK="art",RXS=["❤️","🎨","⭐","🤍"];
 let session=null,tab="m",ownerOpen=false,G=[],RX=[],CM=[];
@@ -248,17 +245,15 @@ section.rv.in:before{transform:none}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv .card,.js .rv p,.js .rv .tools,.js .rv canvas#cv{opacity:1!important;transform:none!important}.mk>span{transform:none!important}}
 </style>
 <script>
-/* ===== BAGIAN INI YANG KAMU EDIT ===== */
-<script>
-const LAGU2=[
+const LAGU=[
  {title:"Salvatore",artist:"Lana Del Rey",link:"https://open.spotify.com/track/21qg0IBZf8R12qHd9A3AA4"},
  {title:"Dozen",artist:"Alison’",link:"https://open.spotify.com/track/7FoVZCTSLY9gQ2vqIURPcg"},
  {title:"Surabaya",artist:"Crayon Case",link:"https://open.spotify.com/track/2g7n0uQwR9vJGRLNTCSNbU"}
 ];
-const RUANG2={
+const RUANG={
  title:"Nocturn",
  about:"The person behind.",
- upcoming:`Hey! This is my little corner of the internet, a space filled with bits and pieces of things I like, do, and experience. From personal creations and projects to music and little moments that become part of everyday life.
+ notes:`Hey! This is my little corner of the internet, a space filled with bits and pieces of things I like, do, and experience. From personal creations and projects to music and little moments that become part of everyday life.
 
 I’ve got quite a few interests and there’s still so much I’d like to explore. Looking forward to creating more things, joining interesting activities, picking up new skills, and collecting experiences along the way.
 
@@ -269,22 +264,22 @@ Just taking it all one step at a time. There’s more to come!`
 
 document.documentElement.classList.add("js");
 
-document.querySelectorAll("main section h2, main .big").forEach(h=>{if(!h.querySelector(".mk"))h.innerHTML='<span class="mk"><span>'+h.innerHTML+'</span></span>'});
+document.querySelectorAll("main section h2, main .big").forEach(h=>{h.innerHTML='<span class="mk"><span>'+h.innerHTML+'</span></span>'});
 
 document.querySelectorAll("main section.rv").forEach(s=>{
  s.querySelectorAll(".card,p,.tools,canvas#cv").forEach((e,i)=>{e.style.transitionDelay=(.25+Math.min(i,8)*.09)+"s"});
 });
 
-const io4=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io4.unobserve(e.target)}}),{threshold:.08});
-document.querySelectorAll("main .rv").forEach(e=>io4.observe(e));
+const io3=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io3.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll("main .rv").forEach(e=>io3.observe(e));
 
-function spId2(l){const m=(l||"").match(/track\/([A-Za-z0-9]+)/);return m&&m[1]}
-document.getElementById("songs").innerHTML=LAGU2.map((s,i)=>{const id=spId2(s.link);return `<div class="card"><div class="tag">Song 0${i+1}</div><div style="font-weight:700;font-size:20px">${s.title}</div><div class="cm">${s.artist}</div>${id?`<iframe class="sp" src="https://open.spotify.com/embed/track/${id}?theme=0" allow="encrypted-media" loading="lazy"></iframe>`:`<div class="cm">Link lagu belum diisi</div>`}</div>`}).join("");
+function spId(l){const m=(l||"").match(/track\/([A-Za-z0-9]+)/);return m&&m[1]}
+document.getElementById("songs").innerHTML=LAGU.map((s,i)=>{const id=spId(s.link);return `<div class="card"><div class="tag">Song 0${i+1}</div><div style="font-weight:700;font-size:20px">${s.title}</div><div class="cm">${s.artist}</div>${id?`<iframe class="sp" src="https://open.spotify.com/embed/track/${id}?theme=0" allow="encrypted-media" loading="lazy"></iframe>`:`<div class="cm">Link lagu belum diisi</div>`}</div>`}).join("");
 
-const rp2=document.querySelectorAll("#deep p");
-document.querySelector("#deep h2").textContent=RUANG2.title;
-rp2[0].textContent=RUANG2.about;
-rp2[1].textContent=RUANG2.upcoming;
-rp2[1].style.whiteSpace="pre-line";
+const rp=document.querySelectorAll("#deep p");
+document.querySelector("#deep h2").textContent=RUANG.title;
+rp[0].textContent=RUANG.about;
+rp[1].textContent=RUANG.notes;
+rp[1].style.whiteSpace="pre-line";
 </script>
 </body></html>
