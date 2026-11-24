@@ -228,3 +228,36 @@ sb.auth.getSession().then(({data})=>{session=data.session;dash()});
 sb.auth.onAuthStateChange((_,s)=>{session=s;dash()});
 showPhoto();loadGal();reps();
 </script></body></html>
+<style>
+.rv{opacity:0;transform:translateY(24px);transition:.8s}
+.rv.in{opacity:1;transform:none}
+.sp{width:100%;height:152px;border:0;border-radius:12px;margin-top:8px}
+</style>
+<script>
+/* ===== BAGIAN INI YANG KAMU EDIT ===== */
+const SONG_LINKS=[
+ {title:"Salvatore",artist:"Lana Del Rey",link:""},
+ {title:"Dozen",artist:"Alison’",link:""},
+ {title:"Surabaya",artist:"Crayon Case",link:""}
+];
+const ROOM={
+ title:"Nocturn",
+ about:"Tulis tentang dirimu di sini.",
+ upcoming:"Joining competitions such as FLS3N. Updates coming soon."
+};
+/* ===================================== */
+
+// animasi saat scroll
+const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io2.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll(".rv").forEach(e=>io2.observe(e));
+
+// lagu (Spotify)
+function spId(l){const m=l.match(/track\/([A-Za-z0-9]+)/);return m&&m[1]}
+document.getElementById("songs").innerHTML=SONG_LINKS.map((s,i)=>{const id=spId(s.link);return `<div class="card"><div class="tag">Song 0${i+1}</div><div style="font-weight:700;font-size:20px">${s.title}</div><div class="cm">${s.artist}</div>${id?`<iframe class="sp" src="https://open.spotify.com/embed/track/${id}?theme=0" allow="encrypted-media" loading="lazy"></iframe>`:`<div class="cm">Link lagu belum diisi</div>`}</div>`}).join("");
+
+// teks Room
+const rp=document.querySelectorAll("#deep p");
+document.querySelector("#deep h2").textContent=ROOM.title;
+rp[0].textContent=ROOM.about;
+rp[1].textContent=ROOM.upcoming;
+</script>
